@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText textUsername, textPassword;
     HashMap<String, String> usernamePassword;
+    HashMap<String, String> usernameOperatorID;
+    int operatorID = 0;
+    private SharedPreferences.Editor editor;
 
     AsyncTask<String, Void, String> asyncLoginAPI;
     JSONArray jsonArray;
@@ -35,6 +39,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         usernamePassword = new HashMap<>();
+        usernameOperatorID = new HashMap<>();
+
+        SharedPreferences opID = getSharedPreferences("OperatorID",MODE_PRIVATE);
+        editor = opID.edit();
+
         asyncLoginAPI = new RestConnectionLogin();
         asyncLoginAPI.execute("https://taskmanager2020-api.herokuapp.com/api/operators/");
 
@@ -52,6 +61,12 @@ public class MainActivity extends AppCompatActivity {
 
                 for(Map.Entry<String, String> entry : usernamePassword.entrySet()) {
                     if (entry.getKey().equals(textUsername.getText().toString()) && entry.getValue().equals(textPassword.getText().toString())) {
+                        operatorID =  Integer.parseInt(usernameOperatorID.get(textUsername.getText().toString()));
+                        System.out.println("The current operator ID: " + operatorID);
+                        editor.clear();
+                        editor.putInt("ID",operatorID);
+                        editor.commit();
+
                         startActivity(new Intent(MainActivity.this, TaskManager.class));
                         break;
                     }
@@ -113,8 +128,10 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject results = jsonArray.getJSONObject(i);
                     String userName = results.getString("Username");
                     String operatorPassword = results.getString("OperatorPassword");
-                    usernamePassword.put(userName, operatorPassword);
+                    String operatorID = results.getString("OperatorID");
 
+                    usernamePassword.put(userName, operatorPassword);
+                    usernameOperatorID.put(userName, operatorID);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
