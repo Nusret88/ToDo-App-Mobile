@@ -23,97 +23,132 @@
         android:layout_height="500dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp">
 
             <TextView
-                android:id="@+id/Overtime"
+                android:id="@+id/overtimetxt"
+                android:gravity="right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Overtime: "
                 android:textColor="@color/colorBlack" />
 
             <EditText
-                android:id="@+id/overtimetime"
+                android:id="@+id/overtime"
+                android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="0"
+                android:hint="0 minutes"
                 android:inputType="time"
                 android:textColor="@color/colorBlack" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp">
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/inctimetxt"
+                android:gravity="right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Inconvenient time: "
                 android:textColor="@color/colorBlack" />
 
             <EditText
-                android:id="@+id/editTextTime2"
+                android:id="@+id/inctime"
+                android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="0"
+                android:hint="0 minutes"
                 android:inputType="time" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp">
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/traveltimetxt"
+                android:gravity="right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Travel Time: "
                 android:textColor="@color/colorBlack" />
 
             <EditText
-                android:id="@+id/editTextTime3"
+                android:id="@+id/traveltime"
+                android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="0"
+                android:hint="0 minutes"
                 android:inputType="time" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/calc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Calculate" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp">
 
             <TextView
-                android:id="@+id/TotalTimetxt"
+                android:id="@+id/totaltimetxt"
+                android:gravity="right"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:text="Total Time:"
                 android:textColor="@color/colorBlack" />
 
             <TextView
-                android:id="@+id/TotalTime"
+                android:id="@+id/totaltime"
+                android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
+                android:text=""
                 android:textColor="@color/colorBlack"
                 android:textSize="20dp" />
         </TableRow>
 
+
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="100dp"
+            android:gravity="center_horizontal">
 
             <Button
                 android:id="@+id/send"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:text="Send" />
         </TableRow>
     </TableLayout>
