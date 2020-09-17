@@ -34,11 +34,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        textUsername = (EditText) findViewById(R.id.txtUName);
-        textPassword = findViewById(R.id.txtPsw);
         usernamePassword = new HashMap<>();
-        //asyncLoginAPI = new RestConnectionLogin();
-        //asyncLoginAPI.execute("https://taskmanager2020-api.herokuapp.com/api/operators/");
+        asyncLoginAPI = new RestConnectionLogin();
+        asyncLoginAPI.execute("https://taskmanager2020-api.herokuapp.com/api/operators/");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -48,18 +46,17 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("Kamil: " + textUsername.getText());
+                textUsername = (EditText) findViewById(R.id.txtUName);
+                textPassword = findViewById(R.id.txtPsw);
 
-                /*for(Map.Entry<String, String> entry : usernamePassword.entrySet()) {
-                    System.out.println("Food list: " + entry.getKey() + "-" + entry.getValue());
-                    if (entry.getKey().equals(textUsername.getText())) {
+
+                for(Map.Entry<String, String> entry : usernamePassword.entrySet()) {
+                    if (entry.getKey().equals(textUsername.getText().toString()) && entry.getValue().equals(textPassword.getText().toString())) {
                         startActivity(new Intent(MainActivity.this, TaskManager.class));
-
-                        //break;
+                        break;
                     }
-                }*/
+                }
             }
-
         });
     }
 
