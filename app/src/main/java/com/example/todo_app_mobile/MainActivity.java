@@ -2,6 +2,7 @@ package com.example.todo_app_mobile;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,6 +28,7 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class MainActivity extends AppCompatActivity {
 
+    TextView textloginfail;
     private EditText textUsername, textPassword;
     HashMap<String, String> usernamePassword;
     HashMap<String, String> usernameOperatorID;
@@ -57,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 textUsername = (EditText) findViewById(R.id.txtUName);
                 textPassword = findViewById(R.id.txtPsw);
+                textloginfail = findViewById(R.id.loginfail);
 
 
                 for(Map.Entry<String, String> entry : usernamePassword.entrySet()) {
@@ -69,6 +72,9 @@ public class MainActivity extends AppCompatActivity {
 
                         startActivity(new Intent(MainActivity.this, TaskManager.class));
                         break;
+                    } else {
+                        //textloginfail.setTextColor(getResources().getColor(R.color.colorRed));
+                        textloginfail.setText("Your username or password is incorrect \n                     please try again");
                     }
                 }
             }
