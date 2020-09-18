@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.TypedArray;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.print.PrinterId;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TableRow;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,8 +19,11 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -25,16 +31,24 @@ public class TaskManager extends AppCompatActivity {
     AsyncTask<String, Void, String> asyncTaskAPI;
     HashMap<Integer, String> taskList;
     JSONArray jsonArray;
-    int operatorID;
-    TableRow row1, row2, row3, row4, row5, row6;
+    int operatorID, maxRowNumber = 6, chosenTaskID;
+    Button[] buttonAccept, buttonReject, buttonFinish;
+    TableRow[] tableRowList;
+    TextView[] textViewList;
 
+    int[] aarrayOfAcceptButtons= {R.id.t1accept, R.id.t2accept, R.id.t3accept, R.id.t4accept, R.id.t5accept,R.id.t6accept};
+    int[] aarrayOfDeclineButtons= {R.id.t1decline, R.id.t2decline, R.id.t3decline, R.id.t4decline, R.id.t5decline,R.id.t6decline};
+    int[] aarrayOfFinishButtons= {R.id.t1finish, R.id.t2finish, R.id.t3finish, R.id.t4finish, R.id.t5finish,R.id.t6finish};
+    int[] arrayofTableRows = {R.id.row1, R.id.row2, R.id.row3, R.id.row4, R.id.row5, R.id.row6};
+    int[] arrayOfTextViews = {R.id.task1txt, R.id.task2txt, R.id.task3txt, R.id.task4txt, R.id.task5txt, R.id.task6txt};
+    int clickedAcceptButtonIndex=0, clickedRejectButtonIndex=0, clickedFinishButtonIndex=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_manager);
 
-        taskList = new HashMap<>();
+        taskList = new LinkedHashMap<>();
         SharedPreferences opID = getSharedPreferences("OperatorID", MODE_PRIVATE);
         operatorID = opID.getInt("ID", 0);
         System.out.println("TaskManager class - op id is: " + operatorID);
@@ -42,34 +56,8 @@ public class TaskManager extends AppCompatActivity {
         asyncTaskAPI = new RestConnectionTask();
         asyncTaskAPI.execute("https://taskmanager2020-api.herokuapp.com/api/tasks/" + operatorID);
 
-        final Button btnList[] = new Button[18];
-        int[] btnId = {R.id.t1accept, R.id.t2accept, R.id.t3accept, R.id.t4accept, R.id.t5accept, R.id.t6accept,
-                R.id.t1decline, R.id.t2decline, R.id.t3decline, R.id.t4decline, R.id.t5decline, R.id.t6decline,
-                R.id.t1finish, R.id.t2finish, R.id.t3finish, R.id.t4finish, R.id.t5finish, R.id.t6finish};
+        Button finish1 = (Button)findViewById(R.id.t1finish);
 
-        for (int i = 0; i < btnList.length; i++)
-            btnList[i] = (Button) findViewById(btnId[i]);
-
-        View.OnClickListener btnListener = null;
-        for (Button btn : btnList)
-            btn.setOnClickListener(btnListener);
-
-        btnListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for (int i = 0; i < btnList.length; i++) {
-
-                }
-            }
-        };
-
-        rowArray(2).setVisibility(View.INVISIBLE);
-        rowArray(3).setVisibility(View.INVISIBLE);
-        rowArray(4).setVisibility(View.INVISIBLE);
-        rowArray(5).setVisibility(View.INVISIBLE);
-
-
-        Button finish1 = (Button) findViewById(R.id.t1finish);
         finish1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,26 +66,32 @@ public class TaskManager extends AppCompatActivity {
             }
         });
 
-        Button finish2 = (Button) findViewById(R.id.t2finish);
+        Button finish2 = (Button)findViewById(R.id.t2finish);
+
         finish2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 startActivity(new Intent(TaskManager.this, WorkTime.class));
             }
         });
 
-        Button finish3 = (Button) findViewById(R.id.t3finish);
+        Button finish3 = (Button)findViewById(R.id.t3finish);
+
         finish3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 startActivity(new Intent(TaskManager.this, WorkTime.class));
             }
         });
 
-        Button finish4 = (Button) findViewById(R.id.t4finish);
+        Button finish4 = (Button)findViewById(R.id.t4finish);
+
         finish4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 startActivity(new Intent(TaskManager.this, WorkTime.class));
             }
         });
@@ -159,29 +153,52 @@ public class TaskManager extends AppCompatActivity {
 
                     taskList.put(taskID, taskDesc);
                 }
+
+
+
+            tableRowList = new TableRow[maxRowNumber];
+            for(int a=0; a<maxRowNumber; a++){
+                tableRowList[a] = (TableRow) findViewById(arrayofTableRows[a]);
+
+                if(a>=taskList.size()){
+                    tableRowList[a].setVisibility(View.INVISIBLE);
+                }
+            }
+
+            textViewList = new TextView[taskList.size()];
+            buttonAccept = new Button[taskList.size()];
+            for(int i=0; i<buttonAccept.length; i++){
+                buttonAccept[i] = (Button) findViewById(aarrayOfAcceptButtons[i]);
+                textViewList[i] = (TextView) findViewById(arrayOfTextViews[i]);
+                String value = (String) taskList.values().toArray()[i];
+                textViewList[i].setText(value);
+            }
+
+            for(Button btn:buttonAccept){
+                btn.setOnClickListener(btnListener);
+            }
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public TableRow rowArray (int row) {
-        TableRow [] tr = new TableRow[6];
+    private View.OnClickListener btnListener = new View.OnClickListener(){
 
-        row1 = findViewById(R.id.row1);
-        row2 = findViewById(R.id.row2);
-        row3 = findViewById(R.id.row3);
-        row4 = findViewById(R.id.row4);
-        row5 = findViewById(R.id.row5);
-        row6 = findViewById(R.id.row6);
+        @Override
+        public void onClick(View v) {
 
-        tr[0] = row1;
-        tr[1] = row2;
-        tr[2] = row3;
-        tr[3] = row4;
-        tr[4] = row5;
-        tr[5] = row6;
-
-        return tr[row];
-    }
+            for (int i = 0; i < buttonAccept.length; i++)
+            {
+                if (buttonAccept[i].getId() == v.getId())
+                {
+                    clickedAcceptButtonIndex = i;
+                    break;
+                }
+            }
+            chosenTaskID = (int) taskList.keySet().toArray()[clickedAcceptButtonIndex];
+            System.out.println("TaskID of chosen task; " + chosenTaskID);
+        }
+    };
 }
