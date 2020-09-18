@@ -50,14 +50,15 @@ public class TaskManager extends AppCompatActivity {
         for (int i = 0; i < btnList.length; i++)
             btnList[i] = (Button) findViewById(btnId[i]);
 
-        private View.OnClickListener btnListener = null for (Button btn : btnList)
+        View.OnClickListener btnListener = null;
+        for (Button btn : btnList)
             btn.setOnClickListener(btnListener);
 
         btnListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 for (int i = 0; i < btnList.length; i++) {
-                    
+
                 }
             }
         };
