@@ -56,7 +56,7 @@ public class TaskManager extends AppCompatActivity {
         asyncTaskAPI = new RestConnectionTask();
         asyncTaskAPI.execute("https://taskmanager2020-api.herokuapp.com/api/tasks/" + operatorID);
 
-        Button finish1 = (Button)findViewById(R.id.t1finish);
+        /*Button finish1 = (Button)findViewById(R.id.t1finish);
 
         finish1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,7 +94,7 @@ public class TaskManager extends AppCompatActivity {
 
                 startActivity(new Intent(TaskManager.this, WorkTime.class));
             }
-        });
+        });*/
     }
 
     private class RestConnectionTask extends AsyncTask<String, Void, String> {
@@ -144,6 +144,10 @@ public class TaskManager extends AppCompatActivity {
             return responseContent;
         }
 
+        /**
+         * Knapparna för varje task
+         * @param result
+         */
         protected void onPostExecute(final String result) {
             try {
                 for(int i=0; i<jsonArray.length();i++){
@@ -167,16 +171,26 @@ public class TaskManager extends AppCompatActivity {
 
             textViewList = new TextView[taskList.size()];
             buttonAccept = new Button[taskList.size()];
+            buttonReject = new Button[taskList.size()];
+            buttonFinish = new Button[taskList.size()];
             for(int i=0; i<buttonAccept.length; i++){
                 buttonAccept[i] = (Button) findViewById(aarrayOfAcceptButtons[i]);
+                buttonReject[i] = (Button) findViewById(aarrayOfDeclineButtons[i]);
+                buttonFinish[i] = (Button) findViewById(aarrayOfFinishButtons[i]);
                 textViewList[i] = (TextView) findViewById(arrayOfTextViews[i]);
                 String value = (String) taskList.values().toArray()[i];
                 textViewList[i].setText(value);
             }
 
             for(Button btn:buttonAccept){
-                btn.setOnClickListener(btnListener);
+                btn.setOnClickListener(accListener);
             }
+                for(Button btn:buttonReject){
+                    btn.setOnClickListener(rejListener);
+                }
+                for(Button btn:buttonFinish){
+                    btn.setOnClickListener(finListener);
+                }
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -184,7 +198,7 @@ public class TaskManager extends AppCompatActivity {
         }
     }
 
-    private View.OnClickListener btnListener = new View.OnClickListener(){
+    private View.OnClickListener accListener = new View.OnClickListener(){
 
         @Override
         public void onClick(View v) {
@@ -200,5 +214,43 @@ public class TaskManager extends AppCompatActivity {
             chosenTaskID = (int) taskList.keySet().toArray()[clickedAcceptButtonIndex];
             System.out.println("TaskID of chosen task; " + chosenTaskID);
         }
+
+
+    };
+    private View.OnClickListener rejListener = new View.OnClickListener(){
+
+        @Override
+        public void onClick(View v) {
+
+            for (int i = 0; i < buttonAccept.length; i++)
+            {
+                if (buttonReject[i].getId() == v.getId())
+                {
+                    clickedRejectButtonIndex = i;
+                    break;
+                }
+            }
+            chosenTaskID = (int) taskList.keySet().toArray()[clickedRejectButtonIndex];
+            System.out.println("TaskID of chosen task; " + chosenTaskID);
+        }
+
+    };
+    private View.OnClickListener finListener = new View.OnClickListener(){
+
+        @Override
+        public void onClick(View v) {
+
+            for (int i = 0; i < buttonFinish.length; i++)
+            {
+                if (buttonFinish[i].getId() == v.getId())
+                {
+                    clickedFinishButtonIndex = i;
+                    break;
+                }
+            }
+            chosenTaskID = (int) taskList.keySet().toArray()[clickedFinishButtonIndex];
+            System.out.println("TaskID of chosen task; " + chosenTaskID);
+        }
+
     };
 }

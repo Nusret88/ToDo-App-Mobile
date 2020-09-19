@@ -37,15 +37,16 @@
             <TableRow
                 android:id="@+id/row1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="5dp">
 
                 <TextView
                     android:id="@+id/task1txt"
+                    android:layout_weight="1"
                     android:layout_width="160dp"
                     android:layout_height="wrap_content"
-                    android:text="Agneta Hansson på Vardagsgatan 33 behöver hjälp med installationen av comhem nätet."
-                    android:textColor="@color/colorBlack" />
+                    android:text=""
+                    android:textColor="@color/colorBlack"/>
 
                 <Button
                     android:id="@+id/t1accept"
@@ -72,14 +73,15 @@
             <TableRow
                 android:id="@+id/row2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="5dp">
 
                 <TextView
                     android:id="@+id/task2txt"
+                    android:layout_weight="1"
                     android:layout_width="160dp"
                     android:layout_height="wrap_content"
-                    android:text="Bertil Kristofersson på Hagavägen 21 behöver hjälp med att fixa diskmaskinen."
+                    android:text=""
                     android:textColor="@color/colorBlack" />
 
                 <Button
@@ -108,14 +110,15 @@
             <TableRow
                 android:id="@+id/row3"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="5dp">
 
                 <TextView
                     android:id="@+id/task3txt"
+                    android:layout_weight="1"
                     android:layout_width="160dp"
                     android:layout_height="wrap_content"
-                    android:text="Jonas Halvarsson på Brunsparken 18 behöver hjälp med att installera Discord på sin laptom."
+                    android:text=""
                     android:textColor="@color/colorBlack" />
 
                 <Button
@@ -144,14 +147,15 @@
             <TableRow
                 android:id="@+id/row4"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="5dp">
 
                 <TextView
                     android:id="@+id/task4txt"
+                    android:layout_weight="1"
                     android:layout_width="160dp"
                     android:layout_height="wrap_content"
-                    android:text="Kajsa Olofsson på Toalettgatan 67 behöver hjälp med att installera antik radar."
+                    android:text=""
                     android:textColor="@color/colorBlack" />
 
                 <Button
@@ -180,14 +184,15 @@
             <TableRow
                 android:id="@+id/row5"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="5dp">
 
                 <TextView
                     android:id="@+id/task5txt"
+                    android:layout_weight="1"
                     android:layout_width="160dp"
                     android:layout_height="wrap_content"
-                    android:text="Kajsa Olofsson på Toalettgatan 67 behöver hjälp med att installera antik radar."
+                    android:text=""
                     android:textColor="@color/colorBlack" />
 
                 <Button
@@ -216,14 +221,15 @@
             <TableRow
                 android:id="@+id/row6"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="5dp">
 
                 <TextView
                     android:id="@+id/task6txt"
+                    android:layout_weight="1"
                     android:layout_width="160dp"
                     android:layout_height="wrap_content"
-                    android:text="Kajsa Olofsson på Toalettgatan 67 behöver hjälp med att installera antik radar."
+                    android:text=""
                     android:textColor="@color/colorBlack" />
 
                 <Button
