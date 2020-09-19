@@ -158,8 +158,6 @@ public class TaskManager extends AppCompatActivity {
                     taskList.put(taskID, taskDesc);
                 }
 
-
-
             tableRowList = new TableRow[maxRowNumber];
             for(int a=0; a<maxRowNumber; a++){
                 tableRowList[a] = (TableRow) findViewById(arrayofTableRows[a]);
@@ -173,6 +171,7 @@ public class TaskManager extends AppCompatActivity {
             buttonAccept = new Button[taskList.size()];
             buttonReject = new Button[taskList.size()];
             buttonFinish = new Button[taskList.size()];
+
             for(int i=0; i<buttonAccept.length; i++){
                 buttonAccept[i] = (Button) findViewById(aarrayOfAcceptButtons[i]);
                 buttonReject[i] = (Button) findViewById(aarrayOfDeclineButtons[i]);
@@ -187,12 +186,14 @@ public class TaskManager extends AppCompatActivity {
             for(Button btn:buttonAccept){
                 btn.setOnClickListener(accListener);
             }
-                for(Button btn:buttonReject){
-                    btn.setOnClickListener(rejListener);
-                }
-                for(Button btn:buttonFinish){
-                    btn.setOnClickListener(finListener);
-                }
+
+            for(Button btn:buttonReject){
+                btn.setOnClickListener(rejListener);
+            }
+
+            for(Button btn:buttonFinish){
+                btn.setOnClickListener(finListener);
+            }
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -201,10 +202,8 @@ public class TaskManager extends AppCompatActivity {
     }
 
     private View.OnClickListener accListener = new View.OnClickListener(){
-
         @Override
         public void onClick(View v) {
-
             for (int i = 0; i < buttonAccept.length; i++)
             {
                 if (buttonAccept[i].getId() == v.getId())
@@ -221,15 +220,13 @@ public class TaskManager extends AppCompatActivity {
             }
             chosenTaskID = (int) taskList.keySet().toArray()[clickedAcceptButtonIndex];
             System.out.println("TaskID of chosen task; " + chosenTaskID);
+            UpdateStatus updateStatus = new UpdateStatus(chosenTaskID, "in progress");
         }
-
-
     };
-    private View.OnClickListener rejListener = new View.OnClickListener(){
 
+    private View.OnClickListener rejListener = new View.OnClickListener(){
         @Override
         public void onClick(View v) {
-
             for (int i = 0; i < buttonAccept.length; i++)
             {
                 if (buttonReject[i].getId() == v.getId())
@@ -245,14 +242,13 @@ public class TaskManager extends AppCompatActivity {
             }
             chosenTaskID = (int) taskList.keySet().toArray()[clickedRejectButtonIndex];
             System.out.println("TaskID of chosen task; " + chosenTaskID);
+            UpdateStatus updateStatus = new UpdateStatus(chosenTaskID, "rejected");
         }
-
     };
-    private View.OnClickListener finListener = new View.OnClickListener(){
 
+    private View.OnClickListener finListener = new View.OnClickListener(){
         @Override
         public void onClick(View v) {
-
             for (int i = 0; i < buttonFinish.length; i++)
             {
                 if (buttonFinish[i].getId() == v.getId())
@@ -265,6 +261,5 @@ public class TaskManager extends AppCompatActivity {
             chosenTaskID = (int) taskList.keySet().toArray()[clickedFinishButtonIndex];
             System.out.println("TaskID of chosen task; " + chosenTaskID);
         }
-
     };
 }
