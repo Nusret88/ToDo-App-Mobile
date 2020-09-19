@@ -177,6 +177,8 @@ public class TaskManager extends AppCompatActivity {
                 buttonAccept[i] = (Button) findViewById(aarrayOfAcceptButtons[i]);
                 buttonReject[i] = (Button) findViewById(aarrayOfDeclineButtons[i]);
                 buttonFinish[i] = (Button) findViewById(aarrayOfFinishButtons[i]);
+                buttonFinish[i].setEnabled(false);
+                buttonFinish[i].setAlpha(.5f);
                 textViewList[i] = (TextView) findViewById(arrayOfTextViews[i]);
                 String value = (String) taskList.values().toArray()[i];
                 textViewList[i].setText(value);
@@ -208,6 +210,12 @@ public class TaskManager extends AppCompatActivity {
                 if (buttonAccept[i].getId() == v.getId())
                 {
                     clickedAcceptButtonIndex = i;
+                    buttonAccept[i].setEnabled(false);
+                    buttonAccept[i].setAlpha(.5f);
+                    buttonReject[i].setEnabled(false);
+                    buttonReject[i].setAlpha(.5f);
+                    buttonFinish[i].setEnabled(true);
+                    buttonFinish[i].setAlpha(1f);
                     break;
                 }
             }
@@ -227,6 +235,11 @@ public class TaskManager extends AppCompatActivity {
                 if (buttonReject[i].getId() == v.getId())
                 {
                     clickedRejectButtonIndex = i;
+                    tableRowList[i].setVisibility(View.INVISIBLE);
+
+                    // Jag tror hashmapen skapas på nytt när man kommer in från finish
+                    // så set status finish och rejected kanske räcker
+                    //taskList.remove(i);
                     break;
                 }
             }
@@ -245,6 +258,7 @@ public class TaskManager extends AppCompatActivity {
                 if (buttonFinish[i].getId() == v.getId())
                 {
                     clickedFinishButtonIndex = i;
+                    startActivity(new Intent(TaskManager.this, WorkTime.class));
                     break;
                 }
             }
