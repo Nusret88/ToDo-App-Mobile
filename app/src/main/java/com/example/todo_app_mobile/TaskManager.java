@@ -30,7 +30,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class TaskManager extends AppCompatActivity {
     AsyncTask<String, Void, String> asyncTaskAPI;
     HashMap<Integer, String> taskList;
-    JSONArray jsonArray;
+    JSONArray jsonArray = null;
     int operatorID, maxRowNumber = 6, chosenTaskID;
     Button[] buttonAccept, buttonReject, buttonFinish;
     TableRow[] tableRowList;
@@ -55,46 +55,6 @@ public class TaskManager extends AppCompatActivity {
 
         asyncTaskAPI = new RestConnectionTask();
         asyncTaskAPI.execute("https://taskmanager2020-api.herokuapp.com/api/tasks/" + operatorID);
-
-        /*Button finish1 = (Button)findViewById(R.id.t1finish);
-
-        finish1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.println("The listTask hashmap: " + taskList);
-                startActivity(new Intent(TaskManager.this, WorkTime.class));
-            }
-        });
-
-        Button finish2 = (Button)findViewById(R.id.t2finish);
-
-        finish2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivity(new Intent(TaskManager.this, WorkTime.class));
-            }
-        });
-
-        Button finish3 = (Button)findViewById(R.id.t3finish);
-
-        finish3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivity(new Intent(TaskManager.this, WorkTime.class));
-            }
-        });
-
-        Button finish4 = (Button)findViewById(R.id.t4finish);
-
-        finish4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivity(new Intent(TaskManager.this, WorkTime.class));
-            }
-        });*/
     }
 
     private class RestConnectionTask extends AsyncTask<String, Void, String> {
@@ -149,13 +109,21 @@ public class TaskManager extends AppCompatActivity {
          * @param result
          */
         protected void onPostExecute(final String result) {
+           //String status = "";
             try {
                 for(int i=0; i<jsonArray.length();i++){
                     JSONObject results = jsonArray.getJSONObject(i);
                     int taskID = results.getInt("TaskID");
                     String taskDesc = results.getString("Description");
+                    //status = results.getString("Status");
 
                     taskList.put(taskID, taskDesc);
+//                    if(status.equals("in progress")){
+//                        findViewById(aarrayOfAcceptButtons[i]).setEnabled(false);
+//                        findViewById(aarrayOfAcceptButtons[i]).setAlpha(.5f);
+//
+//                        findViewById(aarrayOfFinishButtons[i]).setEnabled(true);
+//                    }
                 }
 
             tableRowList = new TableRow[maxRowNumber];
@@ -176,11 +144,15 @@ public class TaskManager extends AppCompatActivity {
                 buttonAccept[i] = (Button) findViewById(aarrayOfAcceptButtons[i]);
                 buttonReject[i] = (Button) findViewById(aarrayOfDeclineButtons[i]);
                 buttonFinish[i] = (Button) findViewById(aarrayOfFinishButtons[i]);
+
                 buttonFinish[i].setEnabled(false);
                 buttonFinish[i].setAlpha(.5f);
+
                 textViewList[i] = (TextView) findViewById(arrayOfTextViews[i]);
                 String value = (String) taskList.values().toArray()[i];
                 textViewList[i].setText(value);
+
+
             }
 
             for(Button btn:buttonAccept){
@@ -233,10 +205,6 @@ public class TaskManager extends AppCompatActivity {
                 {
                     clickedRejectButtonIndex = i;
                     tableRowList[i].setVisibility(View.INVISIBLE);
-
-                    // Jag tror hashmapen skapas på nytt när man kommer in från finish
-                    // så set status finish och rejected kanske räcker
-                    //taskList.remove(i);
                     break;
                 }
             }
@@ -249,16 +217,18 @@ public class TaskManager extends AppCompatActivity {
     private View.OnClickListener finListener = new View.OnClickListener(){
         @Override
         public void onClick(View v) {
+
             for (int i = 0; i < buttonFinish.length; i++)
             {
                 if (buttonFinish[i].getId() == v.getId())
                 {
                     clickedFinishButtonIndex = i;
-                    startActivity(new Intent(TaskManager.this, WorkTime.class));
+                    chosenTaskID = (int) taskList.keySet().toArray()[clickedFinishButtonIndex];
+                    startActivity(new Intent(TaskManager.this, WorkTime.class).putExtra("taskID",chosenTaskID));
                     break;
                 }
             }
-            chosenTaskID = (int) taskList.keySet().toArray()[clickedFinishButtonIndex];
+
             System.out.println("TaskID of chosen task; " + chosenTaskID);
         }
     };
