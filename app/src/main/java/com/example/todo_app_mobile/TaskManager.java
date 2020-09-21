@@ -21,6 +21,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.lang.reflect.Array;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -30,6 +31,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class TaskManager extends AppCompatActivity {
     AsyncTask<String, Void, String> asyncTaskAPI;
     HashMap<Integer, String> taskList;
+    ArrayList<String> teskStatus;
     JSONArray jsonArray = null;
     int operatorID, maxRowNumber = 6, chosenTaskID;
     Button[] buttonAccept, buttonReject, buttonFinish;
@@ -49,6 +51,7 @@ public class TaskManager extends AppCompatActivity {
         setContentView(R.layout.activity_task_manager);
 
         taskList = new LinkedHashMap<>();
+
         SharedPreferences opID = getSharedPreferences("OperatorID", MODE_PRIVATE);
         operatorID = opID.getInt("ID", 0);
         System.out.println("TaskManager class - op id is: " + operatorID);
@@ -109,15 +112,17 @@ public class TaskManager extends AppCompatActivity {
          * @param result
          */
         protected void onPostExecute(final String result) {
+            ArrayList<String> taskStatus = new ArrayList<>();
            //String status = "";
             try {
                 for(int i=0; i<jsonArray.length();i++){
                     JSONObject results = jsonArray.getJSONObject(i);
                     int taskID = results.getInt("TaskID");
                     String taskDesc = results.getString("Description");
-                    //status = results.getString("Status");
+                    String status = results.getString("Status");
 
                     taskList.put(taskID, taskDesc);
+                    taskStatus.add(status);
 //                    if(status.equals("in progress")){
 //                        findViewById(aarrayOfAcceptButtons[i]).setEnabled(false);
 //                        findViewById(aarrayOfAcceptButtons[i]).setAlpha(.5f);
@@ -145,8 +150,18 @@ public class TaskManager extends AppCompatActivity {
                 buttonReject[i] = (Button) findViewById(aarrayOfDeclineButtons[i]);
                 buttonFinish[i] = (Button) findViewById(aarrayOfFinishButtons[i]);
 
-                buttonFinish[i].setEnabled(false);
-                buttonFinish[i].setAlpha(.5f);
+                if(taskStatus.get(i).equals("pending")) {
+                    buttonFinish[i].setEnabled(false);
+                    buttonFinish[i].setAlpha(.5f);
+                }
+
+                if(taskStatus.get(i).equals("in progress")){
+                    findViewById(aarrayOfAcceptButtons[i]).setEnabled(false);
+                    findViewById(aarrayOfAcceptButtons[i]).setAlpha(.5f);
+                    findViewById(aarrayOfDeclineButtons[i]).setEnabled(false);
+                    findViewById(aarrayOfDeclineButtons[i]).setAlpha(.5f);
+                    findViewById(aarrayOfFinishButtons[i]).setEnabled(true);
+                                  }
 
                 textViewList[i] = (TextView) findViewById(arrayOfTextViews[i]);
                 String value = (String) taskList.values().toArray()[i];

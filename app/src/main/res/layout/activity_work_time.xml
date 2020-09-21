@@ -60,15 +60,15 @@
             android:layout_marginTop="20dp">
 
             <TextView
-                android:id="@+id/inctimetxt"
+                android:id="@+id/traveltimetxt"
+                android:gravity="right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:text="Total Time: "
+                android:text="Travel Time: "
                 android:textColor="@color/colorBlack" />
 
             <EditText
-                android:id="@+id/totaltime"
+                android:id="@+id/traveltime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -83,15 +83,15 @@
             android:layout_marginTop="20dp">
 
             <TextView
-                android:id="@+id/traveltimetxt"
-                android:gravity="right"
+                android:id="@+id/inctimetxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Travel Time: "
+                android:gravity="right"
+                android:text="Total Time: "
                 android:textColor="@color/colorBlack" />
 
             <EditText
-                android:id="@+id/traveltime"
+                android:id="@+id/totaltime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
