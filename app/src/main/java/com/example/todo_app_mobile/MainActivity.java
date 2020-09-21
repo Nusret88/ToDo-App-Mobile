@@ -72,10 +72,9 @@ public class MainActivity extends AppCompatActivity {
 
                         startActivity(new Intent(MainActivity.this, TaskManager.class));
                         break;
-                    } else {
-                        //textloginfail.setTextColor(getResources().getColor(R.color.colorRed));
-                        textloginfail.setText("Your username or password is incorrect \n                     please try again");
                     }
+                 //   else if (!entry.getKey().equals(textUsername.getText().toString()) && entry.getValue().equals(textPassword.getText().toString())) {
+                 //       textloginfail.setText("Your username or password is incorrect \n                     please try again"); }
                 }
             }
         });

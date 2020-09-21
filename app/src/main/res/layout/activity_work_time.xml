@@ -28,7 +28,26 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/traveltimetxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="Travel Time: "
+                android:textColor="@color/colorBlack" />
+
+            <EditText
+                android:id="@+id/traveltime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:ems="10"
+                android:hint="0 hours"
+                android:inputType="time" />
+        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
@@ -40,7 +59,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="Over Time: "
+                android:text="Over Time/ \n
+Inconvenient Time: "
                 android:textColor="@color/colorBlack" />
 
             <EditText
@@ -60,34 +80,11 @@
             android:layout_marginTop="20dp">
 
             <TextView
-                android:id="@+id/traveltimetxt"
-                android:gravity="right"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Travel Time: "
-                android:textColor="@color/colorBlack" />
-
-            <EditText
-                android:id="@+id/traveltime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:ems="10"
-                android:hint="0 hours"
-                android:inputType="time" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp">
-
-            <TextView
                 android:id="@+id/inctimetxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="Total Time: "
+                android:text="Work Time: "
                 android:textColor="@color/colorBlack" />
 
             <EditText
@@ -99,17 +96,6 @@
                 android:hint="0 hours"
                 android:inputType="time" />
         </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:gravity="center_horizontal"/>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"/>
 
 
         <TableRow
