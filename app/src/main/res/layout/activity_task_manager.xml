@@ -54,21 +54,25 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:text="Accept"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/gradient"/>
 
                 <Button
                     android:id="@+id/t1decline"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:text="Decline"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/gradient"
+                    />
 
                 <Button
                     android:id="@+id/t1finish"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:text="Finish"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/gradient"/>
             </TableRow>
 
             <TableRow
@@ -91,21 +95,24 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:text="Accept"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/gradient" />
 
                 <Button
                     android:id="@+id/t2decline"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:text="Decline"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/gradient" />
 
                 <Button
                     android:id="@+id/t2finish"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:text="Finish"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/gradient" />
 
             </TableRow>
 
@@ -129,21 +136,24 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:text="Accept"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/gradient" />
 
                 <Button
                     android:id="@+id/t3decline"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:text="Decline"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/gradient" />
 
                 <Button
                     android:id="@+id/t3finish"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:text="Finish"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/gradient" />
 
             </TableRow>
 
@@ -167,21 +177,24 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:text="Accept"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/gradient" />
 
                 <Button
                     android:id="@+id/t4decline"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:text="Decline"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/gradient" />
 
                 <Button
                     android:id="@+id/t4finish"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:text="Finish"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/gradient" />
 
             </TableRow>
 
@@ -205,21 +218,24 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:text="Accept"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/gradient" />
 
                 <Button
                     android:id="@+id/t5decline"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:text="Decline"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/gradient" />
 
                 <Button
                     android:id="@+id/t5finish"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:text="Finish"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/gradient" />
 
             </TableRow>
 
@@ -243,21 +259,24 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:text="Accept"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/gradient" />
 
                 <Button
                     android:id="@+id/t6decline"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:text="Decline"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/gradient" />
 
                 <Button
                     android:id="@+id/t6finish"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:text="Finish"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/gradient" />
 
             </TableRow>
         </TableLayout>

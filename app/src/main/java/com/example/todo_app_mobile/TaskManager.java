@@ -1,11 +1,14 @@
 package com.example.todo_app_mobile;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.print.PrinterId;
 import android.view.View;
@@ -111,6 +114,7 @@ public class TaskManager extends AppCompatActivity {
          * Knapparna för varje task
          * @param result
          */
+        @RequiresApi(api = Build.VERSION_CODES.M)
         protected void onPostExecute(final String result) {
             ArrayList<String> taskStatus = new ArrayList<>();
            //String status = "";
